@@ -2,10 +2,9 @@ import ReactDOM from 'react-dom';
 
 import React, { useEffect, useState } from 'react';
 import {
-    BrowserRouter as Router,
-    Switch,
+    BrowserRouter,
+    Routes,
     Route,
-    Link
 } from "react-router-dom";
 /* Layouts */
 import Header from './layouts/Header';
@@ -36,41 +35,43 @@ function App() {
     }, [])
 
     return (
-        <Router>
+        <BrowserRouter>
             <Header user={user} isLoggedIn={isLoggedIn} />
-            <Switch>
-                <Route path="/" exact={true} component={Home} />
-                <Route path="/about" exact={true} component={About} />
-                <Route path="/contact" exact={true} component={Contact} />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
 
                 {/* Private Authenticated Route */}
                 <PrivateRoute
                     authed={isLoggedIn}
                     path='/projects'
-                    component={ProjectsList}
+                    element={<ProjectsList />}
                 />
 
                 <PrivateRoute
                     authed={isLoggedIn}
-                    path='/projects/create'
-                    component={ProjectCreate}
+                    path='/project/create'
+                    element={<ProjectCreate />}
                 />
 
                 <PrivateRoute
                     authed={isLoggedIn}
                     path='/projects/view/:id'
-                    component={ProjectView}
+                    element={<ProjectView />}
                 />
+                {/* <Route path="/projects/create" element={<ProjectCreate />} />
+                <Route path="/projects/view/:id" element={<ProjectView />} /> */}
                 {/* Private Authenticated Route */}
 
-                {/* <Route path="/projects" exact={true} component={ProjectsList} /> */}
-                {/* <Route path="/projects/create" exact={true} component={ProjectCreate} />
-                <Route path="/projects/view/:id" exact={true} component={ProjectView} /> */}
-                <Route path="/signup" exact={true} component={Register} />
-                <Route path="/signin" exact={true} component={Login} />
-            </Switch>
+                {/* <Route path="/projects" component={ProjectsList} /> */}
+                {/* <Route path="/projects/create" component={ProjectCreate} />
+                <Route path="/projects/view/:id" component={ProjectView} /> */}
+                <Route path="/signup" element={<Register />} />
+                <Route path="/signin" element={<Login />} />
+            </Routes>
             <Footer />
-        </Router>
+        </BrowserRouter>
     );
 } Register
 

@@ -77,7 +77,7 @@ function ProjectsList() {
                         </InputGroup>
                     </div>
                     <div className="col-md-2">
-                        <Link to='/projects/create' className='btn btn-info'> + Create Project</Link>
+                        <Link to='/project/create' className='btn btn-info'> + Create Project</Link>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, Route } from 'react-router';
+import { Navigate, Route } from 'react-router';
 
 function PrivateRoute({ component: Component, authed, ...rest }) {
     return (
@@ -7,7 +7,7 @@ function PrivateRoute({ component: Component, authed, ...rest }) {
             {...rest}
             render={(props) => authed === true
                 ? <Component {...props} exact={true} />
-                : <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />}
+                : <Navigate to={{ pathname: '/signin', state: { from: props.location } }} />}
         />
     )
 }
